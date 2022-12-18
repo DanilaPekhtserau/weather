@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import AButton from "./Components/Atoms/AButton";
+import SignUpForm from "./Components/Molecules/Authorization/SignUpForm";
 
 function App() {
   return (
     <div className="App">
-      <AButton text={'Go' } />
+      <SignUpForm/>
     </div>
   );
 }

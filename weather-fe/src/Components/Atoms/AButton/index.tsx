@@ -4,12 +4,12 @@ interface AButtonProps {
 
     text?: string
 
-    func?: () => void
+    func?: () => any
 }
 
 const AButton: FC<AButtonProps> = ({text, func}) => {
     return (
-        <button onClick={func} >
+        <button onClick={ ()=>{func && func()}} >
             {text}
         </button>
     );
