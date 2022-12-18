@@ -1,6 +1,6 @@
 import React from 'react';
-import AInput from "../Atoms/AInput";
-import AButton from "../Atoms/AButton";
+import AInput from "../../../Atoms/AInput";
+import AButton from "../../../Atoms/AButton";
 
 const SignUpForm = () => {
     return (
