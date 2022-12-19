@@ -4,12 +4,12 @@ interface AInputProps {
     type?: React.HTMLInputTypeAttribute
     placeholder?: string
 
-    onChange?: () => void
+    onChange?: (e:any) => void
 }
 
 const AInput: FC<AInputProps> = ({placeholder, type, onChange}) => {
     return (
-        <input placeholder={placeholder} type = {type} onChange={() => {onChange && onChange()}}>
+        <input placeholder={placeholder} type = {type} onChange={e => {onChange && onChange(e.target.value)}}>
             
         </input>
     );
