@@ -9,19 +9,24 @@ const SignUpForm = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const create_user = () => {
-        const user = {
-            email: email,
-            password: password
+        const data = {
+            user: {
+                email: email,
+                password: password
+            }
         }
-        console.log(user)
-        console.log(email)
-        console.log(password)
-
+        sign_up_user(data).then(r=>
+        {
+                alert(r)
+                return
+        })
     }
     return (
-        <form>
-            <AInput placeholder={"email"} onChange={() => setEmail}/>
-            <AInput placeholder={"password"} type={"password"} onChange={() => setPassword}/>
+        <form onSubmit={e => {
+            e.preventDefault()
+        }}>
+            <AInput placeholder={"email"} onChange={(e) => setEmail(e.target.value)}/>
+            <AInput placeholder={"password"} type={"password"} onChange={(e) => setPassword(e.target.value)}/>
             <AButton text={"Sign Up"}
                      func={() => create_user()}/>
         </form>

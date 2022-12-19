@@ -9,7 +9,7 @@ interface AInputProps {
 
 const AInput: FC<AInputProps> = ({placeholder, type, onChange}) => {
     return (
-        <input placeholder={placeholder} type = {type} onChange={e => {onChange && onChange(e.target.value)}}>
+        <input placeholder={placeholder} type = {type} onChange={onChange}>
             
         </input>
     );
