@@ -9,7 +9,7 @@ const SignUpForm = () => {
             <AInput placeholder={"email"}/>
             <AInput placeholder={"password"} type={"password"}/>
             <AButton text={"Sign Up"}
-                     func={sign_up_user(["jopa"])}/>
+                     func={() => sign_up_user([])}/>
         </form>
     );
 };

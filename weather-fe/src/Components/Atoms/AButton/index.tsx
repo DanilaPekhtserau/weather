@@ -4,7 +4,7 @@ interface AButtonProps {
 
     text?: string
 
-    func?: () => any
+    func?: () => void
 }
 
 const AButton: FC<AButtonProps> = ({text, func}) => {
