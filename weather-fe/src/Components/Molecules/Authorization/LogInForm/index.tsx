@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AInput from "../../../Atoms/AInput";
 import AButton from "../../../Atoms/AButton";
-import {sign_in_user} from "../../../RESTAPI/BackendAPI";
+import {sign_in_user} from "../../../../APIs/RESTAPI/BackendAPI";
 
 const LogInForm = () => {
 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import AInput from "../../../Atoms/AInput";
 import AButton from "../../../Atoms/AButton";
-import {sign_up_user} from "../../../RESTAPI/BackendAPI";
+import {sign_up_user} from "../../../../APIs/RESTAPI/BackendAPI";
 import {User} from "../../../../Models/User";
 
 const SignUpForm = () => {
