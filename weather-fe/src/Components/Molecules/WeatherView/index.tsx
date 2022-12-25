@@ -3,7 +3,7 @@ import React
 import {useGeolocated} from "react-geolocated";
 import {get_weather} from "../../../APIs/WeatherAPI/WeatherAPI";
 import {is_user_authenticated} from "../../../APIs/RESTAPI/BackendAPI";
-import {redirect, useNavigate} from "react-router";
+import {useNavigate} from "react-router";
 
 const WeatherView = () => {
 
