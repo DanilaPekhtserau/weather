@@ -28,8 +28,8 @@ const router = createBrowserRouter([
         element: <SignUpForm/>,
     },
     {
-      path: "/weather",
-      element: <WeatherView/>
+        path: "/weather",
+        element: <WeatherView/>
     },
 ]);
 

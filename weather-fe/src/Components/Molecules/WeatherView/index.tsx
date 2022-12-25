@@ -2,8 +2,12 @@ import React
     , {useEffect, useState} from 'react';
 import {useGeolocated} from "react-geolocated";
 import {get_weather} from "../../../APIs/WeatherAPI/WeatherAPI";
+import {is_user_authenticated} from "../../../APIs/RESTAPI/BackendAPI";
+import {redirect, useNavigate} from "react-router";
 
 const WeatherView = () => {
+
+    const navigate = useNavigate();
 
     const {coords, isGeolocationAvailable, isGeolocationEnabled} =
         useGeolocated({
@@ -36,10 +40,22 @@ const WeatherView = () => {
         get_weather_data()
     }, [coords]);
 
+    useEffect(() => {
+        is_user_authenticated().then((r) => {
+
+            }
+        ).catch((reason)=>{
+            if (reason.response.status === 401){
+                navigate("/log-in")
+            }
+
+        })
+    }, []);
+
     return (
         <div>
             {
-                weatherData.name !== undefined &&
+                weatherData.name !== 'Неизвестно' &&
                 <div>
                     <div>
                         <p>Город: {weatherData.name}</p>

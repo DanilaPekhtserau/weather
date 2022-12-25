@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import AInput from "../../../Atoms/AInput";
 import AButton from "../../../Atoms/AButton";
 import {sign_in_user} from "../../../../APIs/RESTAPI/BackendAPI";
+import LogOutButton from "../LogOutButton";
 
 const LogInForm = () => {
 
@@ -16,7 +17,7 @@ const LogInForm = () => {
         }
         sign_in_user(data).then(r=>
         {
-            alert(r)
+            localStorage.setItem('token', r.data.token);
             return
         })
     }
@@ -28,6 +29,7 @@ const LogInForm = () => {
             <AInput placeholder={"password"} type={"password"} onChange={(e) => setPassword(e.target.value)}/>
             <AButton text={"Log In"}
                      func={() => log_in_user()}/>
+            <LogOutButton/>
         </form>
     );
 };
