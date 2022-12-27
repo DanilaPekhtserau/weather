@@ -13,3 +13,7 @@ export const sign_in_user = (data: any) => {
 export const is_user_authenticated = () => {
     return axios.get(`${backendURL}users/is_signed_in`, {headers: {'Authorization': localStorage.getItem('token')}})
 }
+
+export const get_weather=(data: any)=>{
+    return axios.post(`${backendURL}weather`, data, {headers: {'Authorization': localStorage.getItem('token')}})
+}

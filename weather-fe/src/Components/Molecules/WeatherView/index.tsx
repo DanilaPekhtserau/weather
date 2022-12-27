@@ -1,15 +1,14 @@
 import React
     , {useEffect, useState} from 'react';
 import {useGeolocated} from "react-geolocated";
-import {get_weather} from "../../../APIs/WeatherAPI/WeatherAPI";
-import {is_user_authenticated} from "../../../APIs/RESTAPI/BackendAPI";
+import {get_weather, is_user_authenticated} from "../../../APIs/RESTAPI/BackendAPI";
 import {useNavigate} from "react-router";
 
 const WeatherView = () => {
 
     const navigate = useNavigate();
 
-    const {coords, isGeolocationAvailable, isGeolocationEnabled} =
+    const {coords} =
         useGeolocated({
             positionOptions: {
                 enableHighAccuracy: false,
@@ -17,19 +16,16 @@ const WeatherView = () => {
         })
 
     const [weatherData, setWeatherData] = useState({
-        name: 'Неизвестно',
-        main: {
-            temp: 0
-        },
-        weather:[{main:'???'}]
+        town: undefined,
+        weather_state: undefined,
+        temperature: undefined,
+        image: undefined
     })
-    const [imageURL, setImageURL] = useState('')
 
 
     const get_weather_data = () => {
-        coords && get_weather(coords.latitude, coords.longitude).then((r) => {
+        coords && get_weather({lat: coords.latitude, lon: coords.longitude}).then((r) => {
                 setWeatherData(r.data)
-                setImageURL('http://openweathermap.org/img/wn/' + r.data.weather[0].icon + '.png')
                 console.log(r.data)
             }
         )
@@ -44,9 +40,9 @@ const WeatherView = () => {
         is_user_authenticated().then((r) => {
 
             }
-        ).catch((reason)=>{
-            if (reason.response.status === 401){
-                navigate("/log-in")
+        ).catch((reason) => {
+            if (reason.response.status === 401) {
+                navigate("/")
             }
 
         })
@@ -55,19 +51,19 @@ const WeatherView = () => {
     return (
         <div>
             {
-                weatherData.name !== 'Неизвестно' &&
+                weatherData.town !== undefined &&
                 <div>
                     <div>
-                        <p>Город: {weatherData.name}</p>
+                        <p>Город: {weatherData.town}</p>
                     </div>
                     <div>
-                        <p>Погода: {weatherData.weather[0].main}</p>
+                        <p>Погода: {weatherData.weather_state}</p>
                     </div>
                     <div>
-                        <p>Температура: {weatherData.main.temp.toFixed()} °C</p>
+                        <p>Температура: {weatherData.temperature} °C</p>
                     </div>
                     <div>
-                        <p>Картинка: <img src={imageURL} alt=""/> </p>
+                        <p>Картинка: <img src={weatherData.image} alt=""/></p>
                     </div>
                 </div>
             }
